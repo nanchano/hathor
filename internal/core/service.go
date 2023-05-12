@@ -6,7 +6,7 @@ import (
 	"golang.org/x/exp/slog"
 )
 
-// BastetService is the main usecase of the app, centered around event CRUD operations.
+// HathorService is the main usecase of the app, centered around event CRUD operations.
 type HathorService interface {
 	CreateEvent(ctx context.Context, e Event) (*Event, error)
 	GetEvent(ctx context.Context, id int64) (*Event, error)
