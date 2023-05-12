@@ -1,0 +1,392 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "pb/hathor.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "Hathor"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/hathor.Hathor/CreateEvent": {
+      "post": {
+        "summary": "CreateEvent creates and event given an Event message",
+        "operationId": "Hathor_CreateEvent",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/hathorEvent"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/hathorCreateEventRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Hathor"
+        ]
+      }
+    },
+    "/hathor.Hathor/DeleteEvent": {
+      "post": {
+        "summary": "DeleteEvent removes an event from the repository given an ID",
+        "description": "GetEvents returns all the events from the repository.",
+        "operationId": "Hathor_DeleteEvent",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/hathorEmptyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/hathorEventIDRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Hathor"
+        ]
+      }
+    },
+    "/hathor.Hathor/GetEvent": {
+      "post": {
+        "summary": "GetEvent returns the relevant info for an event given an ID",
+        "operationId": "Hathor_GetEvent",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/hathorEvent"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/hathorEventIDRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Hathor"
+        ]
+      }
+    },
+    "/hathor.Hathor/Ping": {
+      "post": {
+        "operationId": "Hathor_Ping",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/hathorEmptyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/hathorEmptyRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Hathor"
+        ]
+      }
+    },
+    "/hathor.Hathor/UpdateEvent": {
+      "post": {
+        "summary": "UpdateEvent finds and updates a given event.",
+        "operationId": "Hathor_UpdateEvent",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/hathorEvent"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/hathorUpdateEventRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Hathor"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "hathorCreateEventRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name is the name of the event to be created"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description is the information on the event to be created"
+        },
+        "category": {
+          "type": "string",
+          "title": "Category is the type of the event to be created"
+        },
+        "location": {
+          "type": "string",
+          "title": "Location is the place where the event that is created will be in"
+        },
+        "publisher": {
+          "type": "string",
+          "title": "Publisher is the owner of the event to be created"
+        },
+        "lineup": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Lineup contains the relevant teams/artists that will participate in the event to be created"
+        },
+        "startTs": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Start is the date the event to be created starts"
+        },
+        "endTs": {
+          "type": "string",
+          "format": "date-time",
+          "title": "End is the date the event to be created ends"
+        }
+      },
+      "title": "CreateEventRequest is the request message to create an event"
+    },
+    "hathorEmptyRequest": {
+      "type": "object",
+      "title": "EmptyRequest is just an empty request"
+    },
+    "hathorEmptyResponse": {
+      "type": "object",
+      "title": "EmptyResponse is just an empty response"
+    },
+    "hathorEvent": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "title": "ID is the identifier for the event. Autogenerated"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name is the human-readable name for the event"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description is the human readable information about the event"
+        },
+        "category": {
+          "type": "string",
+          "title": "Category is the event type"
+        },
+        "location": {
+          "type": "string",
+          "title": "Location is the place where the event will be in"
+        },
+        "publisher": {
+          "type": "string",
+          "title": "Publisher is the owner of the event"
+        },
+        "lineup": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Lineup contains the relevant teams/artists that will participate in the event"
+        },
+        "startTs": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Start is the date the event starts"
+        },
+        "endTs": {
+          "type": "string",
+          "format": "date-time",
+          "title": "End is the date the event ends"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "CreatedAt is the timestamp when the event was created"
+        }
+      },
+      "title": "Event represents the main use case of the app; a festival/party happening sometime, somewhere"
+    },
+    "hathorEventIDRequest": {
+      "type": "object",
+      "properties": {
+        "eventId": {
+          "type": "string",
+          "format": "int64",
+          "title": "EventID is the identifier for an event"
+        }
+      },
+      "title": "EventIDRequest is a request used for operations that only require an event ID"
+    },
+    "hathorUpdateEvent": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "title": "ID of the event"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name is the name of the event to be updated"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description is the information on the event to be updated"
+        },
+        "category": {
+          "type": "string",
+          "title": "Category is the type of the event to be updated"
+        },
+        "location": {
+          "type": "string",
+          "title": "Location is the place where the event that is updated will be in"
+        },
+        "publisher": {
+          "type": "string",
+          "title": "Publisher is the owner of the event to be updated"
+        },
+        "lineup": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Lineup contains the relevant teams/artists that will participate in the event to be updated"
+        },
+        "startTs": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Start is the date the event to be updated starts"
+        },
+        "endTs": {
+          "type": "string",
+          "format": "date-time",
+          "title": "End is the date the event to be updated ends"
+        }
+      },
+      "title": "UpdateEvent is the updated event"
+    },
+    "hathorUpdateEventRequest": {
+      "type": "object",
+      "properties": {
+        "updateMask": {
+          "type": "string",
+          "title": "UpdatedMask is the field mask for an event"
+        },
+        "event": {
+          "$ref": "#/definitions/hathorUpdateEvent",
+          "title": "Event is the updated event content"
+        }
+      },
+      "title": "UpdateEventRequest is the request message to update an event"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}
