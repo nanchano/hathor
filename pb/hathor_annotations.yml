@@ -1,0 +1,18 @@
+type: google.api.Service
+config_version: 3
+title: 'Hathor API'
+
+http:
+  rules:
+    - selector: hathor.Hathor.Ping
+      get: /v1/ping
+    - selector: hathor.Hathor.CreateEvent
+      post: '/v1/hathor'
+      body: '*'
+    - selector: hathor.Hathor.UpdateEvent
+      patch: '/v1/hathor/{event.id}'
+      body: "event"
+    - selector: hathor.Hathor.DeleteEvent
+      delete: '/v1/hathor/{event_id}'
+    - selector: hathor.Hathor.GetEvent
+      get: '/v1/hathor/{event_id}'
