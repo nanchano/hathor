@@ -23,7 +23,7 @@ func renderErrorResponse(ctx context.Context, err error) error {
 
 	var ierr *core.Error
 	if !errors.As(err, &ierr) {
-		return status.Errorf(codes.Internal, "Unexpected error while creating event", err.Error())
+		return status.Errorf(codes.Internal, "Unexpected error while creating event: %s", err.Error())
 	} else {
 		switch ierr.Code() {
 		case core.ErrorNotFound:
@@ -37,5 +37,5 @@ func renderErrorResponse(ctx context.Context, err error) error {
 		}
 	}
 
-	return status.Errorf(st, "Error processing the request", resp.Error.Error())
+	return status.Errorf(st, "Error processing the request: %s", resp.Error.Error())
 }

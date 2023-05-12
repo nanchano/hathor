@@ -2,13 +2,10 @@ package server
 
 import (
 	"context"
-	"errors"
 
 	"github.com/nanchano/hathor/internal/core"
 	pb "github.com/nanchano/hathor/pb"
 )
-
-var invalidFieldMask error = errors.New("Field Mask is not valid")
 
 // Ping checks the server is running
 func (s server) Ping(context.Context, *pb.EmptyRequest) (*pb.EmptyResponse, error) {
